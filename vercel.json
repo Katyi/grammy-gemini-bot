@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
+  "builds": [
+    {
+      "src": "bot.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "bot.js"
     }
   ]
