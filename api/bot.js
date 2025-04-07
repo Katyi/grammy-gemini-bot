@@ -34,7 +34,7 @@ bot.on('message:text', async (ctx) => {
   return ctx.reply(result.response.text(), { parse_mode: 'Markdown' });
 });
 
-console.log('Gemini бот запущен!');
+// console.log('Gemini бот запущен!');
 
 // bot.start();
 
