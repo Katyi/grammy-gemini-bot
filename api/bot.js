@@ -42,4 +42,5 @@ export const config = {
   runtime: 'edge',
 };
 
-export default webhookCallback(bot, 'https');
+// export default webhookCallback(bot, 'https');
+export default webhookCallback(bot, 'std/http');
