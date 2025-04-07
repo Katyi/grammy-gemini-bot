@@ -38,9 +38,5 @@ const port = process.env.PORT || 3000;
 console.log('Gemini бот запущен!');
 
 // bot.start();
-export const config = {
-  runtime: 'edge',
-};
 
-// export default webhookCallback(bot, 'https');
-export default webhookCallback(bot, 'std/http');
+export default webhookCallback(bot, 'https');
