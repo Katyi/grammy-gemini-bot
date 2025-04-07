@@ -1,4 +1,4 @@
-import { Bot } from 'grammy';
+import { Bot, webhookCallback } from 'grammy';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -33,6 +33,10 @@ bot.on('message:text', async (ctx) => {
   const result = await chat.sendMessage(prompt);
   return ctx.reply(result.response.text(), { parse_mode: 'Markdown' });
 });
+const port = process.env.PORT || 3000;
 
 console.log('Gemini бот запущен!');
-bot.start();
+
+// bot.start();
+
+export default webhookCallback(bot, 'https');
