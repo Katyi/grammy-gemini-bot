@@ -43,7 +43,7 @@ bot.on('message:text', async (ctx) => {
 const webhookHandler = async (req, res) => {
   try {
     console.log('Webhook Request Body:', req.body);
-    webhookCallback(bot, 'express')(req, res);
+    webhookCallback(bot, 'http')(req, res);
     // return res.status(200).send('OK');
   } catch (error) {
     console.error('Webhook error:', error);
