@@ -2,11 +2,6 @@ import { Bot, webhookCallback } from 'grammy';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
-const app = express();
-const { PORT } = process.env;
-
-app.use(express.json());
 
 // Vercel предоставляет переменные окружения через process.env
 const { TELEGRAM_BOT_TOKEN, GEMINI_API_KEY } = process.env;
@@ -56,27 +51,7 @@ const webhookHandler = async (req, res) => {
 };
 
 // Экспортируем обработчик для Vercel
-// export default webhookHandler;
+export default webhookHandler;
 
 // Для локального тестирования (не использовать на Vercel с webhook)
 // bot.start();
-
-//   app.post('/api/webhook', async (req, res) => {
-//   try {
-//     // logger.info('Received webhook request', { body: req.body });
-//     await webhookCallback(bot, 'express')(req, res);
-//   } catch (error) {
-//     console.log('Error handling webhook request', { error });
-//     res.sendStatus(500);
-//   }
-// });
-
-app.use(webhookHandler());
-
-app.get('/healthz', (req, res) => {
-  res.sendStatus(200);
-});
-
-app.listen(PORT || 3000, () => {
-  console.log(`Server is running on port ${PORT || 3000}`);
-});
