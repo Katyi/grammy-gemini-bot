@@ -2,6 +2,7 @@ import { Bot, webhookCallback } from 'grammy';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 dotenv.config();
+import getRawBody from 'raw-body';
 
 // Vercel предоставляет переменные окружения через process.env
 const { TELEGRAM_BOT_TOKEN, GEMINI_API_KEY } = process.env;
@@ -51,9 +52,9 @@ const webhookHandler = async (req, res) => {
   } catch (error) {
     console.error('Webhook error:', error);
     // return res.status(500).send('Webhook error occurred');
-    // if (!res.headersSent) {
-    res.status(500).send('Webhook error occurred');
-    // }
+    if (!res.headersSent) {
+      res.status(500).send('Webhook error occurred');
+    }
   }
 };
 
