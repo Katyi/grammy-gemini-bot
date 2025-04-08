@@ -13,10 +13,8 @@ if (!TELEGRAM_BOT_TOKEN || !GEMINI_API_KEY) {
   process.exit(1); // Важно завершить процесс, если ключи не настроены
 }
 
-// const bot = new Bot(TELEGRAM_BOT_TOKEN);
-// const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const bot = new Bot('7743267017:AAFhxri6ZXaowVqG5Hq7h55mPUo5WadIZFY');
-const genAI = new GoogleGenerativeAI('AIzaSyDI1QNYYvJqjQONMqrYUsW4qfrHsPKMwpQ');
+const bot = new Bot(TELEGRAM_BOT_TOKEN);
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
   model: 'gemini-1.5-flash',
   systemInstruction:
@@ -45,6 +43,7 @@ bot.on('message:text', async (ctx) => {
 const webhookHandler = async (req, res) => {
   try {
     await webhookCallback(bot, 'express')(req, res);
+    return res.status(200).send('OK');
   } catch (error) {
     console.error('Webhook error:', error);
     return res.status(500).send('Webhook error occurred');
