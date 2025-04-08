@@ -1,7 +1,6 @@
 import { Bot, webhookCallback } from 'grammy';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
-import { buffer } from 'micro'; // Import micro's buffer utility for raw body parsing
 dotenv.config();
 
 // Vercel предоставляет переменные окружения через process.env
@@ -49,13 +48,8 @@ export const config = {
 
 const webhookHandler = async (req, res) => {
   try {
-    // Parse the raw body for Telegram webhook
-    const rawBody = await buffer(req); // Use micro's buffer to get raw body
-    req.body = JSON.parse(rawBody.toString('utf8')); // Parse the JSON body
-
-    console.log('Webhook Request Body:', req.body);
-
     webhookCallback(bot, 'https')(req, res);
+    // res.status(200).send('OK'); // Respond with 200 OK
   } catch (error) {
     console.error('Webhook error:', error);
     // return res.status(500).send('Webhook error occurred');
