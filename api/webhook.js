@@ -42,6 +42,11 @@ bot.on('message:text', async (ctx) => {
 // Обработчик для webhook
 const webhookHandler = async (req, res) => {
   try {
+    const rawBody = await getRawBody(req);
+    req.body = JSON.parse(rawBody.toString('utf8')); // Parse the JSON body
+
+    console.log('Webhook Request Body:', req.body);
+
     webhookCallback(bot, 'https')(req, res);
   } catch (error) {
     console.error('Webhook error:', error);
