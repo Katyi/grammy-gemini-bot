@@ -1,3 +1,5 @@
 node_modules/
 .env
 simpleBot.js
+index.js
+botOld.js

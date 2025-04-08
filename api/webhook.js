@@ -3,11 +3,16 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const BOT_API_SERVER = 'https://api.telegram.org';
+// Vercel предоставляет переменные окружения через process.env
 const { TELEGRAM_BOT_TOKEN, GEMINI_API_KEY } = process.env;
+
 if (!TELEGRAM_BOT_TOKEN || !GEMINI_API_KEY) {
-  throw new Error('TELEGRAM_BOT_TOKEN and GEMINI_API_KEY must be provided!');
+  console.error(
+    'TELEGRAM_BOT_TOKEN and GEMINI_API_KEY must be set in Vercel environment variables!'
+  );
+  process.exit(1); // Важно завершить процесс, если ключи не настроены
 }
+
 const bot = new Bot(TELEGRAM_BOT_TOKEN);
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
@@ -34,8 +39,18 @@ bot.on('message:text', async (ctx) => {
   return ctx.reply(result.response.text(), { parse_mode: 'Markdown' });
 });
 
-console.log('Gemini бот запущен!');
+// Обработчик для webhook
+const webhookHandler = async (request, response) => {
+  try {
+    await webhookCallback(bot, 'express')(request, response);
+  } catch (error) {
+    console.error('Webhook error:', error);
+    return response.status(500).send('Webhook error occurred');
+  }
+};
 
-bot.start();
+// Экспортируем обработчик для Vercel
+export default webhookHandler;
 
-// export default webhookCallback(bot, 'https');
+// Для локального тестирования (не использовать на Vercel с webhook)
+// bot.start();
