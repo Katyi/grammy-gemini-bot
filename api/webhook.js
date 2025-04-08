@@ -40,19 +40,18 @@ bot.on('message:text', async (ctx) => {
 });
 
 // Обработчик для webhook
-// const webhookHandler = async (req, res) => {
-//   try {
-//     webhookCallback(bot, 'https')(req, res);
-//     return res.status(200).send('OK');
-//   } catch (error) {
-//     console.error('Webhook error:', error);
-//     return res.status(500).send('Webhook error occurred');
-//   }
-// };
+const webhookHandler = async (req, res) => {
+  try {
+    webhookCallback(bot, 'https');
+    return res.status(200).send('OK');
+  } catch (error) {
+    console.error('Webhook error:', error);
+    return res.status(500).send('Webhook error occurred');
+  }
+};
 
 // Экспортируем обработчик для Vercel
-// export default webhookHandler;
-export default webhookCallback(bot, 'https');
+export default webhookHandler;
 
 // Для локального тестирования (не использовать на Vercel с webhook)
 // bot.start();
