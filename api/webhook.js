@@ -45,15 +45,15 @@ bot.on('message:text', async (ctx) => {
 });
 
 // Обработчик для webhook
-// const webhookHandler = async (req, res) => {
-//   try {
-//     await webhookCallback(bot, 'express')(req, res);
-//     return res.status(200).send('OK');
-//   } catch (error) {
-//     console.error('Webhook error:', error);
-//     return res.status(500).send('Webhook error occurred');
-//   }
-// };
+const webhookHandler = async (req, res) => {
+  try {
+    await webhookCallback(bot, 'express')(req, res);
+    return res.status(200).send('OK');
+  } catch (error) {
+    console.error('Webhook error:', error);
+    return res.status(500).send('Webhook error occurred');
+  }
+};
 
 // Экспортируем обработчик для Vercel
 // export default webhookHandler;
