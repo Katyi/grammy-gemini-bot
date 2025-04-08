@@ -13,8 +13,10 @@ if (!TELEGRAM_BOT_TOKEN || !GEMINI_API_KEY) {
   process.exit(1); // Важно завершить процесс, если ключи не настроены
 }
 
-const bot = new Bot(TELEGRAM_BOT_TOKEN);
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+// const bot = new Bot(TELEGRAM_BOT_TOKEN);
+// const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const bot = new Bot('7743267017:AAFhxri6ZXaowVqG5Hq7h55mPUo5WadIZFY');
+const genAI = new GoogleGenerativeAI('AIzaSyDI1QNYYvJqjQONMqrYUsW4qfrHsPKMwpQ');
 const model = genAI.getGenerativeModel({
   model: 'gemini-1.5-flash',
   systemInstruction:
