@@ -49,7 +49,7 @@ export const config = {
 const webhookHandler = async (req, res) => {
   try {
     webhookCallback(bot, 'https')(req, res);
-    // res.status(200).send('OK'); // Respond with 200 OK
+    res.status(200).send('OK'); // Respond with 200 OK
   } catch (error) {
     console.error('Webhook error:', error);
     // return res.status(500).send('Webhook error occurred');
