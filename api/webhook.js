@@ -61,15 +61,17 @@ bot.on('message:text', async (ctx) => {
 // Для локального тестирования (не использовать на Vercel с webhook)
 // bot.start();
 
-app.post('/api/webhook', async (req, res) => {
-  try {
-    // logger.info('Received webhook request', { body: req.body });
-    await webhookCallback(bot, 'express')(req, res);
-  } catch (error) {
-    console.log('Error handling webhook request', { error });
-    res.sendStatus(500);
-  }
-});
+//   app.post('/api/webhook', async (req, res) => {
+//   try {
+//     // logger.info('Received webhook request', { body: req.body });
+//     await webhookCallback(bot, 'express')(req, res);
+//   } catch (error) {
+//     console.log('Error handling webhook request', { error });
+//     res.sendStatus(500);
+//   }
+// });
+
+app.use(webhookCallback(bot, 'express'));
 
 app.get('/healthz', (req, res) => {
   res.sendStatus(200);
