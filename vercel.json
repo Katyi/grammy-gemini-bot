@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "name": "bot",
-  "builds": [
-     { "src": "api/bot.js", "use": "@vercel/node" }
-  ],
+  "builds": [{ "src": "bot.js", "use": "@vercel/node" }],
   "routes": [
-     { "src": "/(.*)", "dest": "/api/bot.js" }
+    {
+      "src": "/(.*)",
+      "dest": "bot.js"
+    }
   ]
 }
