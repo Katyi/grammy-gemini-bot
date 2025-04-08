@@ -71,7 +71,7 @@ const webhookHandler = async (req, res) => {
 //   }
 // });
 
-app.use(webhookCallback(bot, 'express'));
+app.use(webhookHandler());
 
 app.get('/healthz', (req, res) => {
   res.sendStatus(200);
