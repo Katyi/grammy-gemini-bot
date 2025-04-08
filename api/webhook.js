@@ -43,12 +43,16 @@ bot.on('message:text', async (ctx) => {
 const webhookHandler = async (req, res) => {
   try {
     console.log('Webhook Request Body:', req.body);
-    webhookCallback(bot, 'https')(req, res);
+    webhookCallback(bot, 'std/http')(req, res);
     return res.status(200).send('OK');
   } catch (error) {
     console.error('Webhook error:', error);
     return res.status(500).send('Webhook error occurred');
   }
+};
+
+export const config = {
+  runtime: 'edge',
 };
 
 // Экспортируем обработчик для Vercel
