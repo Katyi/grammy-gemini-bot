@@ -47,7 +47,7 @@ const webhookHandler = async (req, res) => {
 
     console.log('Webhook Request Body:', req.body);
 
-    webhookCallback(bot, 'https')(req, res);
+    webhookCallback(bot, 'http')(req, res);
   } catch (error) {
     console.error('Webhook error:', error);
     // return res.status(500).send('Webhook error occurred');
