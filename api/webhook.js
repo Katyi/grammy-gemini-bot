@@ -51,9 +51,9 @@ const webhookHandler = async (req, res) => {
   } catch (error) {
     console.error('Webhook error:', error);
     // return res.status(500).send('Webhook error occurred');
-    if (!res.headersSent) {
-      res.status(500).send('Webhook error occurred');
-    }
+    // if (!res.headersSent) {
+    res.status(500).send('Webhook error occurred');
+    // }
   }
 };
 
