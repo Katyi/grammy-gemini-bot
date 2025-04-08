@@ -61,7 +61,7 @@ bot.on('message:text', async (ctx) => {
 // Для локального тестирования (не использовать на Vercel с webhook)
 // bot.start();
 
-app.get('/api/webhook', async (req, res) => {
+app.post('/api/webhook', async (req, res) => {
   try {
     // logger.info('Received webhook request', { body: req.body });
     await webhookCallback(bot, 'express')(req, res);
