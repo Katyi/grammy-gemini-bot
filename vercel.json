@@ -3,7 +3,7 @@
   "builds": [{ "src": "/api/webhook.js", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/webhook",
       "methods": ["POST"],
       "dest": "/api/webhook.js",
       "headers": { "Content-Type": "application/json" }
