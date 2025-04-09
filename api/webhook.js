@@ -45,7 +45,6 @@ const webhookHandler = async (req, res) => {
     webhookCallback(bot, 'https')(req, res);
   } catch (error) {
     console.error('Webhook error:', error);
-    // return res.status(500).send('Webhook error occurred');
     if (!res.headersSent) {
       res.status(500).send('Webhook error occurred');
     }
@@ -53,8 +52,7 @@ const webhookHandler = async (req, res) => {
 };
 
 // Экспортируем обработчик для Vercel
-// export default webhookHandler;
-export default webhookCallback(bot, 'https');
+export default webhookHandler;
 
 // Для локального тестирования (не использовать на Vercel с webhook)
 // bot.start();
