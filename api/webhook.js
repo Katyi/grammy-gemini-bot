@@ -114,7 +114,7 @@ const webhookHandler = async (req, res) => {
 };
 
 // Экспортируем обработчик для Vercel
-// export default webhookHandler;
+export default webhookHandler;
 
 // Для локального тестирования (не использовать на Vercel с webhook)
 // bot.start();
